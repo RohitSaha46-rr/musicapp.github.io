@@ -1,0 +1,143 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="full">
+            <div class="name">
+                <h1 id="title">Aggar Tum Saath Ho</h1>
+                <h3 id="artist" onclick="view()">Arijit Singh</h3>
+                
+            </div>
+            <div class="img">
+                <img src="tum.jpg" class="arijit">
+
+            </div>
+            <div class="music">
+                <audio src="tum.mp3" class="mp3"></audio>
+                <div class="symbols">
+                <i class="fas fa-backward" id="previous" title="Previous"></i>
+                <i class="fas fa-play" id="play" title="Play"></i>
+                <i class="fas fa-forward" id="forward" title="Forward"></i>
+                </div>
+                
+                
+            </div>
+        </div>
+
+    </header>
+    
+</body>
+<script>
+    let img=document.querySelector('img');
+    let music=document.querySelector("audio");
+    let play=document.getElementById('play');
+    let previous=document.getElementById('previous');
+    let forward=document.getElementById('forward');
+    let title=document.getElementById('title');
+    let artist=document.getElementById('artist');
+    let symbol=true;
+     function view(){
+         if(artist.innerHTML=="Arijit Singh")
+         window.open("https://www.google.com/search?gs_ssp=eJzj4tTP1TewyCgyNzJg9OJJLMrMyixRKM7MS88AAFwtB80&q=arijit+singh&oq=ariji&aqs=chrome.1.69i57j46j0j69i60j0l2.3883j0j8&sourceid=chrome&ie=UTF-8");
+         else if(artist.innerHTML=="Armaan Malik")
+         window.open("https://www.google.com/search?gs_ssp=eJzj4tLP1TcwKis3Kks2YPTiSSzKTUzMU8hNzMnMBgBqBAhf&q=armaan+malik&oq=armaa&aqs=chrome.0.46j69i57j0l3j69i60.3813j0j8&sourceid=chrome&ie=UTF-8");
+         else
+         window.open("https://www.google.com/search?sxsrf=ALeKk00ZyNms5cNj2R2Ixss0QxOkfJpayw%3A1609013598222&ei=XpnnX5mBDdTbz7sPmK2pqAc&q=asit+tripathy+&oq=asit+tripathy+&gs_lcp=CgZwc3ktYWIQAzIHCCMQyQMQJzIECC4QQzICCAAyBggAEBYQHjIGCAAQFhAeMgYIABAWEB5Q30NY30Ng5UVoAHAAeACAAa8CiAGvApIBAzMtMZgBAKABAaoBB2d3cy13aXrAAQE&sclient=psy-ab&ved=0ahUKEwiZqNffuuztAhXU7XMBHZhWCnUQ4dUDCA0&uact=5");
+     }
+
+    function play1() {
+        symbol=false;
+        music.play();
+        play.classList.replace("fa-play","fa-pause");  
+    }
+    function pause() {
+        symbol=true;
+        music.pause();
+        play.classList.replace("fa-pause","fa-play");
+        
+    }
+    play.addEventListener("click", () => {
+        if(symbol){
+        play1();
+    }
+    else{
+        pause();
+    }
+    });
+    let songs=[
+        {
+        Name:"tum",
+        Title:"Aggar Tum Saath Ho",
+        Artist:"Arijit Singh Yalka Agnik",
+        },
+        {
+            Name:"main",
+            Title:"Main Rahoon Ya Na Rahoon",
+            Artist:"Armaan Malik",
+        },
+        {
+            Name:"banja",
+            Title:"Tu Banja Gali Banaras Ki",
+            Artist:"Asit Triphaty",
+        },
+    ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function loadsong(songs){
+    title.textContent=songs.Title;
+    artist.textContent=songs.Artist;
+    img.src=songs.Name + ".jpg";
+    music.src=songs.Name + ".mp3";
+   
+}
+
+
+
+
+
+
+
+
+
+ songindex=0;
+
+    function nextsong(){
+    songindex=(songindex+1) % songs.length;
+    loadsong(songs[songindex]);
+    play1();
+
+} 
+function prevsong(){
+    songindex=(songindex-1+songs.length)%songs.length;
+    loadsong(songs[songindex]);
+    play1();
+}
+
+
+forward.addEventListener('click',nextsong);
+previous.addEventListener('click',prevsong);
+
+
+
+
+   
+</script>
+</html>
